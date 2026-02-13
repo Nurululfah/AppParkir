@@ -1,0 +1,16 @@
+<?php
+include '../config.php';
+
+$id_tarif           = $_POST['id_tarif'];
+$jenis_kendaraan    = $_POST['jenis_kendaraan'];
+$tarif_perjam       = $_POST['tarif_perjam'];
+
+$query  = "UPDATE tb_tarif SET id_tarif='$id_tarif', jenis_kendaraan='$jenis_kendaraan', tarif_perjam='$tarif_perjam'";
+
+if(mysqli_query($config, $query)){
+    header("location:../tarif.php?info=success");
+} else {
+    echo "Error: " . mysqli_error($config);
+}
+
+?>
