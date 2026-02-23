@@ -105,7 +105,7 @@ session_start();
                         </span>
                       </td>
                     <td>
-                     <button class="btn btn-default bg-gradient-yellow-orange btn-sm" data-toggle="modal" data-target="#modal-ubah<?= $data['id_area']; ?>">
+                     <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal-ubah<?= $data['id_area']; ?>">
                         <i class="fas fa-edit"></i>
                     </button>
                     <button class="btn btn-default bg-gradient-yellow-orange btn-sm" data-toggle="modal" data-target="#modal-hapus<?= $data['id_area']; ?>">

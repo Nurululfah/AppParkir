@@ -19,7 +19,7 @@ include 'config.php';
   <!-- Theme style -->
   <link rel="stylesheet" href="assets/dist/css/adminlte.min.css">
   <!-- icon -->
-  <link rel="shortcut icon" href="assets/img/logo.png" type="image/x-icon">
+  <link rel="shortcut icon" href="assets/dist/img/wonwoo.jpg" type="image/x-icon">
   <style>
     .bg-gradient-yellow-orange{
       background: linear-gradient(45deg, #f1c40f, #e67e22);
@@ -51,6 +51,12 @@ include 'config.php';
                         <button type="button" class="close" data-dismiss="alert">&times;</button>
                         <h5><i class="icon fas fa-check-circle"></i> Terimakasih</h5>
                         Anda telah berhasil logout.
+                    </div>
+                    <?php elseif ($_GET['info'] == "tidak_aktif"): ?>
+                    <div class="alert alert-warning alert-dismissible fade show shadow-sm" style="border-radius: 12px; border: none; background-color: #fff3cd; color: #856404;">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <h5><i class="icon fas fa-exclamation-triangle"></i> Mohon Maaf</h5>
+                        Akun Anda tidak aktif. Silakan hubungi administrator.
                     </div>
                 <?php elseif ($_GET['info'] == "login"): ?>
                     <div class="alert alert-info alert-dismissible fade show shadow-sm" style="border-radius: 12px; border: none; background-color: #cfe2ff; color: #084298;">

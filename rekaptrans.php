@@ -25,48 +25,64 @@ include 'config.php';
         </div></div></div>
     <section class="content">
       <div class="container-fluid">
-        
         <div class="row">
-          
-          <div class="col-md-8">
-            <div class="row">
-              <div class="col-lg-6 col-6">
-                <div class="small-box bg-gradient-yellow-orange">
-                  <div class="inner">
-                    <h3><?= $total_kendaraan ?></h3>
-                    <p>Kendaraan Aktif</p>
-                  </div>
-                  <div class="icon">
-                    <i class="fas fa-car"></i>
-                  </div>
+           <div class="col-8">
+               <div class="card">
+                  <div class="card-header">
+                     <h3 class="card-title">Data Transaksi</h3>
+                      </div>
+                        <div class="card-body table-responsive p-0">
+                            <table class="table table-hover text-nowrap">
+                                <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Plat Nomor</th>
+                                        <th>Waktu Masuk</th>
+                                        <th>Waktu Keluar</th>
+                                        <th>Durasi</th>
+                                        <th>Biaya</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php 
+                                    $no = 1;
+                                    include "config.php";
+                                   $query = mysqli_query($config, "SELECT tb_transaksi.*, tb_kendaraan.plat_nomor, tb_kendaraan.pemilik, tb_tarif.tarif_perjam, tb_area.nama_area
+                                                                    FROM tb_transaksi
+                                                                    INNER JOIN tb_kendaraan ON tb_transaksi.id_kendaraan = tb_kendaraan.id_kendaraan
+                                                                    INNER JOIN tb_tarif ON tb_transaksi.id_tarif = tb_tarif.id_tarif
+                                                                    INNER JOIN tb_area ON tb_transaksi.id_area = tb_area.id_area
+                                                                    WHERE tb_transaksi.status = 'keluar'
+                                                                    ORDER BY tb_transaksi.waktu_masuk DESC
+                                                                    ");
+                                   if (mysqli_num_rows($query) > 0) {
+                                      while ($data = mysqli_fetch_assoc($query)) {
+                                  ?>
+                                  <tr>
+                                      <td><?= $no++; ?></td>
+                                      <td><?= $data['plat_nomor'] ?> <br><small class="text-muted"><?= $data['pemilik'] ?></small></td>
+                                      <td><?= $data['waktu_masuk'] ?></td>
+                                      <td><?= $data['waktu_keluar'] ?></td>
+                                      <td><?= $data['durasi_jam'] ?> jam</td>
+                                      <td>Rp <?= number_format($data['biaya_total'], 0, ',', '.') ?></td>
+                                      <td>
+                                    <span class="badge badge-success"><?= ucfirst($data['status']) ?></span>
+                                  </td>
+                                  </tr>
+                                  <?php 
+                                      }
+                                  } else { 
+                                  ?>
+                                  <tr>
+                                      <td colspan="7" class="text-center">Tidak ada data transaksi.</td>
+                                  </tr>
+                                  <?php } ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
-              </div>
-
-              <div class="col-lg-6 col-6">
-                <div class="small-box bg-gradient-yellow-orange">
-                  <div class="inner">
-                    <h3>150</h3>
-                    <p>Slot Tersedia</p>
-                  </div>
-                  <div class="icon">
-                    <i class="fas fa-parking"></i>
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-lg-12">
-                <div class="small-box bg-gradient-yellow-orange">
-                  <div class="inner">
-                    <h3>150</h3>
-                    <p>Data Kendaraan</p>
-                  </div>
-                  <div class="icon">
-                    <i class="fas fa-database"></i>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
 
           <div class="col-md-4">
             <div class="card elevation-1" style="border-radius: 15px;">
@@ -100,8 +116,9 @@ include 'config.php';
               </p>
             </div>
           </div>
-
-        </div></div></section>
+        </div>
+      </div>
+    </section>
     </div>
 
 <?php

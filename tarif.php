@@ -82,7 +82,7 @@ session_start();
                     <td><?=$data ["jenis_kendaraan"] ?></td>
                      <td>Rp. <?= number_format($data['tarif_perjam'])?></td>
                     <td>
-                     <button class="btn btn-default bg-gradient-yellow-orange btn-sm" data-toggle="modal" data-target="#modal-ubah<?= $data['id_tarif']; ?>">
+                     <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal-ubah<?= $data['id_tarif']; ?>">
                         <i class="fas fa-edit"></i>
                     </button>
                     <button class="btn btn-default bg-gradient-yellow-orange btn-sm" data-toggle="modal" data-target="#modal-hapus<?= $data['id_tarif']; ?>">

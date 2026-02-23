@@ -1,27 +1,34 @@
 <?php
 session_start();
 include '../config.php';
+include '../log_aktivitas.php';
 
-// Pastikan data tersedia
+// Cek apakah form disubmit
 if (isset($_POST['id_kendaraan'])) {
+
     $id_kendaraan = $_POST['id_kendaraan'];
     $id_area      = $_POST['id_area'];
     $id_tarif     = $_POST['id_tarif'];
     $id_user      = $_SESSION['id_user'];
-    
-    // Waktu masuk adalah jam sekarang
-    $waktu_masuk  = date('Y-m-d H:i:s'); 
-    $waktu_keluar  = date('Y-m-d H:i:s'); 
-    $durasi_jam   = 0; // Default durasi jam saat catat masuk
-    $biaya_total   = 0; // Default biaya total saat catat masuk
-    $status       = "Masuk"; // Default status saat catat masuk
 
-    // Query insert (waktu_keluar biarkan NULL atau kosong dulu karena baru masuk)
-    $query = "INSERT INTO tb_transaksi (id_kendaraan, waktu_masuk, waktu_keluar, id_tarif, durasi_jam, biaya_total, status, id_user, id_area)
-              VALUES ('$id_kendaraan', '$waktu_masuk', '$waktu_keluar', '$id_tarif', '$durasi_jam', '$biaya_total', '$status', '$id_user', '$id_area')";
+    $durasi_jam   = 0; // Durasi awal 0, akan dihitung saat keluar
+    $biaya_total  = 0; // Biaya awal 0, akan dihitung saat keluar
+    $status       = "Masuk";
+
+    // INSERT tanpa waktu_keluar
+    $query = "INSERT INTO tb_transaksi 
+              (id_kendaraan, waktu_masuk, id_tarif, durasi_jam, biaya_total, status, id_user, id_area)
+              VALUES 
+              ('$id_kendaraan', NOW(), '$id_tarif', '$durasi_jam', '$biaya_total', '$status', '$id_user', '$id_area')";
+
+    // Tambah jumlah kendaraan di area
+    mysqli_query($config, "UPDATE tb_area SET terisi = terisi + 1 WHERE id_area = '$id_area'");
+
+          logAktivitas($config, $id_user, "Menambahkan data transaksi kendaraan dengan ID kendaraan $id_kendaraan");
 
     if(mysqli_query($config, $query)){
         header("location:../transaksi.php?info=success");
+        exit;
     } else {
         echo "Error: " . mysqli_error($config);
     }

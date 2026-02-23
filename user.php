@@ -85,9 +85,9 @@ include 'assets/layout/sidebar.php';
                         <td><?= $data["username"] ?></td>
                         <td><?= $data["password"] ?></td>
                         <td><?= $data["role"] ?></td>
-                        <td><?= $data["status_aktif"] ?></td>
+                        <td><?php echo $data["status_aktif"] == 1 ? "Aktif" : "Tidak Aktif"; ?></td>
                         <td>
-                          <button class="btn btn-default bg-gradient-yellow-orange btn-sm" data-toggle="modal" data-target="#modal-ubah<?= $data['id_user']; ?>">
+                          <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal-ubah<?= $data['id_user']; ?>">
                             <i class="fas fa-edit"></i>
                           </button>
                           <button class="btn btn-default bg-gradient-yellow-orange btn-sm" data-toggle="modal" data-target="#modal-hapus<?= $data['id_user']; ?>">
@@ -159,8 +159,8 @@ include 'assets/layout/sidebar.php';
                                   <label>Status</label>
                                   <select class="form-control" name="status_aktif" required>
                                     <option value="">-- Pilih Status --</option>
-                                    <option value="aktif" <?= ($data['status_aktif'] == 'aktif') ? 'selected' : ''; ?>>Aktif</option>
-                                    <option value="tidak aktif" <?= ($data['status_aktif'] == 'tidak aktif') ? 'selected' : ''; ?>>Tidak Aktif</option>
+                                    <option value="1" <?= ($data['status_aktif'] == 1) ? 'selected' : ''; ?>>Aktif</option>
+                                    <option value="0" <?= ($data['status_aktif'] == 0) ? 'selected' : ''; ?>>Tidak Aktif</option>
                                   </select>
                                 </div>
                                 <div class="modal-footer justify-content-between">
@@ -222,8 +222,8 @@ include 'assets/layout/sidebar.php';
             <label>Status</label>
             <select class="form-control" name="status_aktif" required>
               <option value="">-- Pilih Status --</option>
-              <option value="aktif">Aktif</option>
-              <option value="tidak aktif">Tidak Aktif</option>
+              <option value="1">Aktif</option>
+              <option value="0">Tidak Aktif</option>
             </select>
           </div>
           <div class="modal-footer justify-content-between">

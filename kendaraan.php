@@ -75,7 +75,7 @@ include 'assets/layout/sidebar.php';
                   <?php
                   $no = 1;
                   include "config.php";
-                  $query = mysqli_query($config, "SELECT * FROM tb_kendaraan INNER JOIN tb_user ON tb_kendaraan.id_user =tb_user.id_user");
+                  $query = mysqli_query($config, "SELECT * FROM tb_kendaraan INNER JOIN tb_user ON tb_kendaraan.id_user =tb_user.id_user ORDER BY tb_kendaraan.id_kendaraan DESC");
                   if (mysqli_num_rows($query) > 0) {
                     while ($data = mysqli_fetch_assoc($query)) {
                   ?>
@@ -87,7 +87,7 @@ include 'assets/layout/sidebar.php';
                         <td><?= $data["warna"] ?></td>
                         <td><?= $data["nama"] ?></td>
                         <td>
-                          <button class="btn btn-default bg-gradient-yellow-orange btn-sm" data-toggle="modal" data-target="#modal-ubah<?= $data['id_kendaraan']; ?>">
+                          <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal-ubah<?= $data['id_kendaraan']; ?>">
                             <i class="fas fa-edit"></i>
                           </button>
                           <button class="btn btn-default bg-gradient-yellow-orange btn-sm" data-toggle="modal" data-target="#modal-hapus<?= $data['id_kendaraan']; ?>">

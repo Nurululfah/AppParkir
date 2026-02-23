@@ -15,6 +15,8 @@
   <link rel="stylesheet" href="assets/dist/css/adminlte.min.css">
   <!-- icon -->
   <link rel="shortcut icon" href="assets/img/logo.png" type="image/x-icon">
+    <!-- SweetAlert2 -->
+  <link rel="stylesheet" href="assets/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
 
   <style>
     .bg-gradient-yellow-orange{

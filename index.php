@@ -11,8 +11,24 @@ include 'config.php';
   include 'assets/layout/navbar.php';
   include 'assets/layout/sidebar.php';
 
-  $kendaraan = mysqli_query($config, "SELECT * FROM tb_kendaraan");
-  $total_kendaraan = mysqli_num_rows($kendaraan); 
+  //kendaraan aktif
+  $aktif = mysqli_query($config, "SELECT COUNT(*) as total FROM tb_transaksi WHERE waktu_keluar IS NULL");
+  $data_aktif = mysqli_fetch_assoc($aktif);
+  $total_kendaraan_aktif = $data_aktif['total'];
+
+  //query slot tersedia
+  $slot = mysqli_query($config, "SELECT SUM(kapasitas) as total_kapasitas, SUM(terisi) as total_terisi FROM tb_area");
+  $data = mysqli_fetch_assoc($slot);
+  $total_kapasitas = $data['total_kapasitas'];
+  $total_terisi    = $data['total_terisi'];
+  $slot_tersedia = $total_kapasitas - $total_terisi;
+
+  //query data kendaraan
+
+
+  //Query pendapatan
+ $pendapatan = mysqli_query($config, "SELECT COALESCE(SUM(biaya_total),0) as total FROM tb_transaksi WHERE DATE(waktu_masuk) = CURDATE()");
+ $data_pendapatan = mysqli_fetch_assoc($pendapatan);
 ?>
 
   <!-- Content Wrapper. Contains page content -->
@@ -39,7 +55,7 @@ include 'config.php';
             <!-- small box -->
             <div class="small-box bg-gradient-yellow-orange">
               <div class="inner">
-                <h3><?= $total_kendaraan ?></h3>
+                <h3><?= $total_kendaraan_aktif ?></h3>
                 <p>Kendaraan Aktif</p>
               </div>
               <div class="icon">
@@ -52,7 +68,7 @@ include 'config.php';
             <!-- small box -->
             <div class="small-box bg-gradient-yellow-orange">
               <div class="inner">
-                <h3>150</h3>
+                <h3><?= $slot_tersedia ?></h3>
                 <p>Slot Tersedia</p>
               </div>
               <div class="icon">
@@ -65,7 +81,7 @@ include 'config.php';
             <!-- small box -->
             <div class="small-box bg-gradient-yellow-orange">
               <div class="inner">
-                <h3>150</h3>
+                <h3>-</h3>
                 <p>Data Kendaraan</p>
               </div>
               <div class="icon">
@@ -78,7 +94,7 @@ include 'config.php';
             <!-- small box -->
             <div class="small-box bg-gradient-yellow-orange">
               <div class="inner">
-                <h3>150</h3>
+                <h3>Rp. <?= number_format($data_pendapatan['total'], 0, ',', '.') ?></h3>
                 <p>Pendapatan Hari ini</p>
               </div>
               <div class="icon">
