@@ -27,12 +27,12 @@ include 'config.php';
 
 
   //Query pendapatan
- $pendapatan = mysqli_query($config, "SELECT COALESCE(SUM(biaya_total),0) as total FROM tb_transaksi WHERE DATE(waktu_masuk) = CURDATE()");
- $data_pendapatan = mysqli_fetch_assoc($pendapatan);
+$pendapatan = mysqli_query($config, "SELECT COALESCE(SUM(biaya_total),0) as total FROM tb_transaksi WHERE DATE(waktu_keluar) = CURDATE()");
+$data_pendapatan = mysqli_fetch_assoc($pendapatan);
 ?>
 
   <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
+  <div class="content-wrapper fade-in">
     <!-- Content Header (Page header) -->
     <div class="content-header">
       <div class="container-fluid">
@@ -102,7 +102,6 @@ include 'config.php';
               </div>
             </div>
           </div>
-
         </div>
         <!-- /.row -->
         <!-- Main row -->

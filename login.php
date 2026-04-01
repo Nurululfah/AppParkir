@@ -30,7 +30,7 @@ include 'config.php';
 <body class="hold-transition login-page">
 <div class="login-box">
   <!-- /.login-logo -->
-  <div class="card card-outline card-warning">
+  <div class="card ">
     <div class="card-header text-center">
       <img src="assets/dist/img/wonwoo.jpg" alt="Logo" class="mb-3" style="width: 150px; height: auto;">
     </div>

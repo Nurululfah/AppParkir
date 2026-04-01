@@ -6,8 +6,8 @@
 
  <!-- Main Footer -->
   <footer class="main-footer">
-    <div class="text-center">
-    <h6>App Parkir</h6>
+    <div class="text-right">
+    <h6>App Parkir,.By_nrl</h6>
     </div>
   </footer>
 </div>

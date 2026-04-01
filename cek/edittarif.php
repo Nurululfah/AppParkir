@@ -14,7 +14,7 @@ $query  = "UPDATE tb_tarif SET id_tarif='$id_tarif', jenis_kendaraan='$jenis_ken
           logAktivitas($config, $id_user, "Mengedit data tarif dengan ID $id_tarif");
 
 if(mysqli_query($config, $query)){
-    header("location:../tarif.php?info=success");
+    header("location:../tarif.php?info=edit");
 } else {
     echo "Error: " . mysqli_error($config);
 }

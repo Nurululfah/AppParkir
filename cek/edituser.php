@@ -23,7 +23,7 @@ $query = "UPDATE tb_user
     logAktivitas($config, $id_user, "Mengedit data user dengan nama $nama");
 
 if(mysqli_query($config, $query)){
-    header("location:../user.php?info=success");
+    header("location:../user.php?info=edit");
 } else {
     echo "Error: " . mysqli_error($config);
 }

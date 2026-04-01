@@ -19,7 +19,7 @@ $query  = "INSERT INTO tb_user (nama, username, password, role, status_aktif)
 
 if(mysqli_query($config, $query)){
       // Jika berhasil
-    header("location:../user.php?info=success");
+    header("location:../user.php?info=tambah");
 } else {
     // Jika gagal, tampilkan pesan error untuk debug
     echo "Error: " . mysqli_error($config);

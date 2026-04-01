@@ -12,5 +12,5 @@
     mysqli_query($config, "DELETE FROM tb_tarif WHERE id_tarif = '$id_tarif'") or die(mysqli_error($config));
 }
 
-header("location:../tarif.php?info=success")
+header("location:../tarif.php?info=hapus")
  ?>

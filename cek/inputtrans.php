@@ -27,7 +27,7 @@ if (isset($_POST['id_kendaraan'])) {
           logAktivitas($config, $id_user, "Menambahkan data transaksi kendaraan dengan ID kendaraan $id_kendaraan");
 
     if(mysqli_query($config, $query)){
-        header("location:../transaksi.php?info=success");
+        header("location:../transaksi.php?info=tambah");
         exit;
     } else {
         echo "Error: " . mysqli_error($config);

@@ -10,7 +10,30 @@ include 'assets/layout/header.php';
 include 'assets/layout/navbar.php';
 include 'assets/layout/sidebar.php';
 ?>
+<style>
+@media print {
 
+    /* Hilangkan ruang kosong card */
+    .card,
+    .card-body {
+        height: auto !important;
+        min-height: 0 !important;
+        margin-bottom: 0 !important;
+        padding-bottom: 0 !important;
+    }
+
+    /* Hilangkan footer (tombol cetak) */
+    .card-footer {
+        display: none !important;
+    }
+
+    /* Hilangkan shadow biar tidak terlihat kotak kosong */
+    .card {
+        box-shadow: none !important;
+    }
+
+}
+</style>
 <div class="content-wrapper">
     <div class="content-header">
         <div class="container-fluid">

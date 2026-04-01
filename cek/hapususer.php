@@ -15,5 +15,5 @@ if(isset($_POST['id_user'])) {
     or die(mysqli_error($config));
 }
 
-header("location:../user.php?info=success");
+header("location:../user.php?info=hapus");
 ?>

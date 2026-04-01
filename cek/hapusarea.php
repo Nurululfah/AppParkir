@@ -12,5 +12,5 @@
     mysqli_query($config, "DELETE FROM tb_area WHERE id_area = '$id_area'") or die(mysqli_error($config));
 }
 
-header("location:../area.php?info=success")
+header("location:../area.php?info=hapus")
  ?>

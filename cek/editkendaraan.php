@@ -23,7 +23,7 @@ $query = mysqli_query($config, "UPDATE tb_kendaraan
                                 logAktivitas($config, $id_user, "Mengedit data kendaraan plat nomor $plat_nomor");
 
 if ($query) {
-    header("location:../kendaraan.php?info=success");
+    header("location:../kendaraan.php?info=edit");
 } else {
     echo "Error: " . mysqli_error($config);
 }

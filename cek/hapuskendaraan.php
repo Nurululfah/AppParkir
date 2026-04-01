@@ -12,5 +12,5 @@ if(isset($_POST['id_kendaraan'])) {
     mysqli_query($config, "DELETE FROM tb_kendaraan WHERE id_kendaraan = '$id_kendaraan'") or die(mysqli_error($config));
 }
 
-header("location:../kendaraan.php?info=success")
+header("location:../kendaraan.php?info=hapus")
 ?>

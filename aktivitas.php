@@ -17,38 +17,10 @@ session_start();
   </div>
 
   <div class="content">
-   <!-- infoo -->
-      <!-- <?php if (isset($_GET['info'])): ?>
-        <div class="row">
-            <div class="col-12">
-                <?php if ($_GET['info'] == "gagal"): ?>
-                    <div class="alert alert-danger alert-dismissible fade show shadow-sm" style="border-radius: 12px; border: none; background-color: #f8d7da; color: #842029;">
-                        <button type="button" class="close" data-dismiss="alert">&times;</button>
-                        <h5><i class="icon fas fa-trash-alt"></i> Mohon Maaf!</h5>
-                        Login gagal! Username atau password salah.
-                    </div>
-                <?php elseif ($_GET['info'] == "success"): ?>
-                    <div class="alert alert-success alert-dismissible fade show shadow-sm" style="border-radius: 12px; border: none; background-color: #d1e7dd; color: #0f5132;">
-                        <button type="button" class="close" data-dismiss="alert">&times;</button>
-                        <h5><i class="icon fas fa-check-circle"></i>Berhasil</h5>
-                        Data berhasil di ubah
-                    </div>
-                <?php elseif ($_GET['info'] == "login"): ?>
-                    <div class="alert alert-info alert-dismissible fade show shadow-sm" style="border-radius: 12px; border: none; background-color: #cfe2ff; color: #084298;">
-                        <button type="button" class="close" data-dismiss="alert">&times;</button>
-                        <h5><i class="icon fas fa-info-circle"></i> Mohon maaf</h5>
-                        Anda harus login terlebih dahulu.
-                    </div>
-                <?php endif; ?>
-            </div>
-        </div>
-    <?php endif; ?> -->
-    <!-- infoo end -->
-
     <div class="container"> 
       <div class="row">
         <div class="col-12">
-          <div class="card">
+          <div class="card fade-in">
             <div class="card-header">
               <h3 class="card-title">Data Log Aktivitas</h3>
             </div>

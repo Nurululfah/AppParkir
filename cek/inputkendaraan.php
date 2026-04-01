@@ -18,7 +18,7 @@ $query = "INSERT INTO tb_kendaraan (plat_nomor, jenis_kendaraan, warna, pemilik,
 
 if (mysqli_query($config, $query)) {
     // Jika berhasil
-    header("location:../kendaraan.php?info=success");
+    header("location:../kendaraan.php?info=tambah");
 } else {
     // Jika gagal, tampilkan pesan error untuk debug
     echo "Error: " . mysqli_error($config);

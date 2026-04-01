@@ -12,5 +12,5 @@
     mysqli_query($config, "DELETE FROM tb_transaksi WHERE id_parkir = '$id_parkir'") or die(mysqli_error($config));
 }
 
-header("location:../transaksi.php?info=success")
+header("location:../transaksi.php?info=hapus")
  ?>
