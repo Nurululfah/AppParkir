@@ -18,33 +18,38 @@ include 'assets/layout/sidebar.php';
 
     <div class="content">
         <!-- infoo -->
-        <?php if (isset($_GET['info'])): ?>
-        <div class="row">
-           <div class="col-12 d-flex justify-content-end ml-auto">
-              <div style="width: 350px;">
+       <?php if (isset($_GET['info'])): ?>
+    <div class="row">
+        <div class="col-12 d-flex justify-content-end ml-auto">
+            <div style="width: 350px;">
+
                 <?php if ($_GET['info'] == "hapus"): ?>
                     <div class="alert alert-danger alert-dismissible fade show shadow-sm" style="font-size: 14px; border-radius: 12px; border: none; background-color: #f8d7da; color: #842029;">
                         <button type="button" class="close" data-dismiss="alert">&times;</button>
                         <h5><i class="icon fas fa-trash-alt"></i> Berhasil</h5>
                         Data berhasil dihapus.
                     </div>
-                 <?php elseif ($_GET['info'] == "tambah"): ?>
-                    <div class="alert alert-info alert-dismissible fade show shadow-sm" style="font-size: 14px; border-radius: 12px; border: none;  background-color: #d1e7dd; color: #0f5132;">
+
+                <?php elseif ($_GET['info'] == "tambah"): ?>
+                    <div class="alert alert-info alert-dismissible fade show shadow-sm" style="font-size: 14px; border-radius: 12px; border: none; background-color: #d1e7dd; color: #0f5132;">
                         <button type="button" class="close" data-dismiss="alert">&times;</button>
                         <h5><i class="icon fas fa-info-circle"></i> Sukses</h5>
                         Data berhasil ditambahkan.
                     </div>
+
                 <?php elseif ($_GET['info'] == "edit"): ?>
                     <div class="alert alert-success alert-dismissible fade show shadow-sm" style="font-size: 14px; border-radius: 12px; border: none; background-color: #cfe2ff; color: #084298;">
                         <button type="button" class="close" data-dismiss="alert">&times;</button>
-                        <h5><i class="icon fas fa-check-circle"></i>  Berhasil</h5>
-                          Data berhasil di ubah
+                        <h5><i class="icon fas fa-check-circle"></i> Berhasil</h5>
+                        Data berhasil diubah.
                     </div>
-              </div>
                 <?php endif; ?>
+
             </div>
         </div>
-    <?php endif; ?>
+    </div>
+<?php endif; ?>
+
     <!-- info end -->
         <div class="container">
           <div class="row">
@@ -197,7 +202,7 @@ include 'assets/layout/sidebar.php';
                             <select class="form-control" name="id_area" required>
                                 <option value="">-- Pilih Area --</option>
                                 <?php
-                                $q_area = mysqli_query($config, "SELECT * FROM tb_area");
+                                $q_area = mysqli_query($config, "SELECT * FROM tb_area WHERE terisi < kapasitas");
                                 while ($area = mysqli_fetch_assoc($q_area)) {
                                     echo "<option value='{$area['id_area']}'>{$area['nama_area']}</option>";
                                 }

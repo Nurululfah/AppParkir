@@ -8,7 +8,7 @@ include 'config.php';
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Manajemen Surat</title>
+  <title>App Parkir</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -19,7 +19,7 @@ include 'config.php';
   <!-- Theme style -->
   <link rel="stylesheet" href="assets/dist/css/adminlte.min.css">
   <!-- icon -->
-  <link rel="shortcut icon" href="assets/dist/img/wonwoo.jpg" type="image/x-icon">
+  <link rel="shortcut icon" href="assets/dist/img/jp3.jpg" type="image/x-icon">
   <style>
     .bg-gradient-yellow-orange{
       background: linear-gradient(45deg, #f1c40f, #e67e22);
@@ -32,7 +32,7 @@ include 'config.php';
   <!-- /.login-logo -->
   <div class="card ">
     <div class="card-header text-center">
-      <img src="assets/dist/img/wonwoo.jpg" alt="Logo" class="mb-3" style="width: 150px; height: auto;">
+      <img src="assets/dist/img/jp3.jpg" alt="Logo" class="mb-3" style="width: 150px; height: auto;">
     </div>
     <div class="card-body">
       <p class="login-box-msg">App Parkir</p>

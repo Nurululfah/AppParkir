@@ -5,7 +5,7 @@ include '../log_aktivitas.php';
 
 $nama_area  = $_POST['nama_area'];
 $kapasitas  = $_POST['kapasitas'];
-$terisi     = $_POST['kapasitas'];
+$terisi     = 0;
 
 $id_user    = $_SESSION['id_user'];
 

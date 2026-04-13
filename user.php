@@ -18,33 +18,37 @@ include 'assets/layout/sidebar.php';
 
   <div class="content">
     <!-- infoo -->
-    <?php if (isset($_GET['info'])): ?>
-        <div class="row">
-           <div class="col-12 d-flex justify-content-end ml-auto">
-              <div style="width: 350px;">
+   <?php if (isset($_GET['info'])): ?>
+    <div class="row">
+        <div class="col-12 d-flex justify-content-end ml-auto">
+            <div style="width: 350px;">
+
                 <?php if ($_GET['info'] == "hapus"): ?>
                     <div class="alert alert-danger alert-dismissible fade show shadow-sm" style="font-size: 14px; border-radius: 12px; border: none; background-color: #f8d7da; color: #842029;">
                         <button type="button" class="close" data-dismiss="alert">&times;</button>
                         <h5><i class="icon fas fa-trash-alt"></i> Berhasil</h5>
                         Data berhasil dihapus.
                     </div>
+
                 <?php elseif ($_GET['info'] == "tambah"): ?>
-                    <div class="alert alert-info alert-dismissible fade show shadow-sm" style="font-size: 14px; border-radius: 12px; border: none;  background-color: #d1e7dd; color: #0f5132;">
+                    <div class="alert alert-info alert-dismissible fade show shadow-sm" style="font-size: 14px; border-radius: 12px; border: none; background-color: #d1e7dd; color: #0f5132;">
                         <button type="button" class="close" data-dismiss="alert">&times;</button>
                         <h5><i class="icon fas fa-info-circle"></i> Sukses</h5>
                         Data berhasil ditambahkan.
                     </div>
+
                 <?php elseif ($_GET['info'] == "edit"): ?>
                     <div class="alert alert-success alert-dismissible fade show shadow-sm" style="font-size: 14px; border-radius: 12px; border: none; background-color: #cfe2ff; color: #084298;">
                         <button type="button" class="close" data-dismiss="alert">&times;</button>
-                        <h5><i class="icon fas fa-check-circle"></i>  Berhasil</h5>
-                          Data berhasil di ubah
+                        <h5><i class="icon fas fa-check-circle"></i> Berhasil</h5>
+                        Data berhasil diubah.
                     </div>
-              </div>
                 <?php endif; ?>
+
             </div>
         </div>
-    <?php endif; ?>
+    </div>
+<?php endif; ?>
     <!-- infoo end -->
 
     <div class="container">
@@ -52,7 +56,7 @@ include 'assets/layout/sidebar.php';
         <div class="col-12">
           <div class="card fade-in">
             <div class="card-header">
-              <h3 class="card-title">Data Transaksi</h3>
+              <h3 class="card-title">Data User</h3>
               <div class="card-tools">
                 <button type="button" class="btn btn-default bg-gradient-yellow-orange" data-toggle="modal" data-target="#modal-tambah">
                   <i class="fas fa-plus"></i> tambah
@@ -67,7 +71,7 @@ include 'assets/layout/sidebar.php';
                     <th>No</th>
                     <th>Nama</th>
                     <th>Username</th>
-                    <th>Password</th>
+                    <!-- <th>Password</th> -->
                     <th>role</th>
                     <th>Status</th>
                     <th>Aksi</th>
@@ -85,7 +89,7 @@ include 'assets/layout/sidebar.php';
                         <td><?php echo $no++; ?></td>
                         <td><?= $data["nama"] ?></td>
                         <td><?= $data["username"] ?></td>
-                        <td><?= $data["password"] ?></td>
+                        <!-- <td><?= $data["password"] ?></td> -->
                         <td><?= $data["role"] ?></td>
                         <td><?php echo $data["status_aktif"] == 1 ? "Aktif" : "Tidak Aktif"; ?></td>
                         <td>
@@ -193,7 +197,7 @@ include 'assets/layout/sidebar.php';
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title">Input Data Kendaraan</h4>
+        <h4 class="modal-title">Input Data User</h4>
         <button type="button" class="close" data-dismiss="modal">&times;</button>
       </div>
 

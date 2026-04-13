@@ -27,8 +27,8 @@ include 'config.php';
 
 
   //Query pendapatan
-$pendapatan = mysqli_query($config, "SELECT COALESCE(SUM(biaya_total),0) as total FROM tb_transaksi WHERE DATE(waktu_keluar) = CURDATE()");
-$data_pendapatan = mysqli_fetch_assoc($pendapatan);
+  $pendapatan = mysqli_query($config, "SELECT COALESCE(SUM(biaya_total),0) as total FROM tb_transaksi WHERE DATE(waktu_keluar) = CURDATE()");
+  $data_pendapatan = mysqli_fetch_assoc($pendapatan);
 ?>
 
   <!-- Content Wrapper. Contains page content -->
@@ -77,8 +77,8 @@ $data_pendapatan = mysqli_fetch_assoc($pendapatan);
             </div>
           </div>
 
-           <div class="col-lg-3 col-6">
-            <!-- small box -->
+           <!-- <div class="col-lg-3 col-6">
+           
             <div class="small-box bg-gradient-yellow-orange">
               <div class="inner">
                 <h3>-</h3>
@@ -88,7 +88,7 @@ $data_pendapatan = mysqli_fetch_assoc($pendapatan);
                 <i class="fas fa-database"></i>
               </div>
             </div>
-          </div>
+          </div> -->
 
           <div class="col-lg-3 col-6">
             <!-- small box -->
@@ -103,6 +103,95 @@ $data_pendapatan = mysqli_fetch_assoc($pendapatan);
             </div>
           </div>
         </div>
+        <?php
+        // Query heatmap area parkir (slot terisi per area)
+        $area = mysqli_query($config, "SELECT nama_area, terisi FROM tb_area");
+        $labels_area = [];
+        $data_area = [];
+        while($row = mysqli_fetch_assoc($area)){
+          $labels_area[] = $row['nama_area'];
+          $data_area[]   = $row['terisi'];
+        }
+
+        // Query top pengguna (user paling sering parkir)
+        $top_users = mysqli_query($config, "
+          SELECT tb_user.nama, COUNT(tb_transaksi.id_parkir) AS total_parkir
+          FROM tb_transaksi
+          JOIN tb_user ON tb_transaksi.id_user = tb_user.id_user
+          GROUP BY tb_user.id_user
+          ORDER BY total_parkir DESC
+          LIMIT 5
+        ");
+        ?>
+        <!-- Tambahan konten dashboard -->
+        <section class="content">
+          <div class="container-fluid">
+            <div class="row">
+              <!-- Heatmap Area Parkir -->
+              <div class="col-lg-6">
+                <div class="card">
+                  <div class="card-header"><h3 class="card-title">Heatmap Area Parkir</h3></div>
+                  <div class="card-body">
+                    <canvas id="heatmapArea"></canvas>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Top Pengguna -->
+              <div class="col-lg-6">
+                <div class="card">
+                  <div class="card-header"><h3 class="card-title">Top Pengguna</h3></div>
+                  <div class="card-body">
+                    <table class="table table-striped">
+                      <thead>
+                        <tr>
+                          <th>Nama</th>
+                          <th>Total Parkir</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <?php while($u = mysqli_fetch_assoc($top_users)){ ?>
+                          <tr>
+                            <td><?= $u['nama'] ?></td>
+                            <td><?= $u['total_parkir'] ?></td>
+                          </tr>
+                        <?php } ?>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Script Chart.js -->
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script>
+          const ctx = document.getElementById('heatmapArea').getContext('2d');
+          new Chart(ctx, {
+            type: 'bar',
+            data: {
+              labels: <?= json_encode($labels_area) ?>,
+              datasets: [{
+                label: 'Slot Terisi',
+                data: <?= json_encode($data_area) ?>,
+                backgroundColor: function(context){
+                  const value = context.raw;
+                  if(value > 20) return 'red';
+                  if(value > 10) return 'orange';
+                  return 'green';
+                }
+              }]
+            },
+            options: {
+              responsive: true,
+              plugins: {
+                legend: { display: false }
+              }
+            }
+          });
+        </script>
         <!-- /.row -->
         <!-- Main row -->
       </div><!-- /.container-fluid -->
